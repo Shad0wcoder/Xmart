@@ -1,0 +1,14 @@
+.footer{
+    background-color: aliceblue;
+    
+}
+
+.footer_container{
+    margin: auto;
+    padding: 10px;
+}
+
+.foot{
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,0 +1,4 @@
+.main1{
+    min-height: calc(100vh -100px);
+    margin: 0 16px;
+}

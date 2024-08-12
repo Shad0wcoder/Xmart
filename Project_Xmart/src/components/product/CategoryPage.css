@@ -1,0 +1,10 @@
+.product-lists {
+    display: flex;
+    flex-wrap: wrap;
+    transition: transform 0.3s ease-in-out;
+    white-space: wrap;
+    overflow: hidden;
+    padding-left: 30px;
+    width: calc(100% - 80px); 
+    margin: 10px;
+  }

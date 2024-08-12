@@ -1,0 +1,223 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #f4f5f7;
+}
+
+.cate{
+    border: 2px solid #ccc;
+    min-width: 800px;
+    max-width: 1500px;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.cate h1{
+    padding-top: 10px;
+    text-align: left;
+    margin-left: 2.3rem;
+    font-size: x-large;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .product-list {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 30px;
+    width: calc(100% - 80px); 
+    margin: 10px;
+  }
+  
+  .product-card {
+    display: inline-block;
+    min-width: 200px; 
+    margin: 0 10px;
+  }
+  
+  .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 200px;
+    min-height: 200px;
+    background-color: #fff;
+    text-align: center;
+    margin-top: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+.card:hover{
+    transform: scale(1.01);
+}
+  .card img { 
+    border-radius: 5px;
+    margin: 5px;
+    max-width: 90%;
+    min-height: 200px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  .card-content{
+    padding: 10px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3{
+    color: #0078c2;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    min-width: 190px;
+    max-width: 200px;
+    min-height: 40px;
+    max-height: 50px;
+    white-space: normal;
+}
+.card-content p{
+    color: #222;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    line-height: 1;
+    margin-bottom: auto;
+    text-align: left;
+    text-align: center;
+}
+  
+  .btn_cont {
+    margin-top: 10px;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .scroll-button {
+    background-color: #b3c0ce;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 25px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  
+  .scroll-button:first-of-type {
+    left: 0;
+  }
+  
+  .scroll-button:last-of-type {
+    right: 0;
+  }
+  
+
+
+
+  /* cube css */
+.c_container{
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(3,1fr);
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: auto;
+    max-width: 1400px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 900px;
+}
+.cube_container{
+  border: 1px solid #ccc;
+  height: 420px;
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.cube_container h2{
+  font-size: 1.3rem;
+  margin-left: 9%;
+  white-space: normal;
+  width: 90%;
+}
+  .catego{
+    max-width: 400px;
+    min-height: 370px;
+    max-height: 400px;
+    margin: 10px;
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(2,1fr);
+    background-color: #fff;
+    border-radius: 5px;
+    margin: auto;
+  }
+
+  .small_container{
+    text-align: center;
+    min-width: none;
+    max-width: 145px;
+    height: 145px;
+    margin: 10px;
+    margin: auto;
+    border: 1px solid #ccc;
+    background-color: #f9f8f8;
+  }
+  .small_container p{
+    font-size: small;
+    text-align: center;
+  }
+  
+  .small_container img{
+    width: 90%;
+    height: 100%;
+    object-fit: scale-down;
+    cursor: pointer;
+  }
+  .small_container img:hover{
+    transform: scale(1.01);
+  }
+
+  .category_heading {
+    width: 100%;
+    margin: 10px 10px -15px 10px;
+    font-size: 1.3rem; 
+    text-align: left; 
+    color: #333;
+  }
+  

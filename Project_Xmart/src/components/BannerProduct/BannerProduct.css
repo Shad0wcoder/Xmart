@@ -1,0 +1,59 @@
+.banner_container {
+    position: relative;
+    min-width: 800;
+    max-width: 1500px;
+    max-height: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .banner_images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .banner_image {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .banner_image img {
+    width: 100%;
+    min-height: 300px;
+    display: block;
+    object-fit: cover;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.377);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 40px 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .carousel-button.left {
+    left: -10px;
+  }
+  
+  .carousel-button.right {
+    right: -10px;
+  }
+  
+  .carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
