@@ -15,24 +15,24 @@ app.use(bodyParser.json())
 app.use(express.json());
 const __dirname = path.resolve()
 app.use(cors({
-    origin:"https://xmart-1uzw.onrender.com",
-    methods:[ "GET", "POST", "PUT", "DELETE"],
-    credentials:true
+    origin: "https://xmart-1uzw.onrender.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
 }))
 // home testing route
 // app.get('/',(req,res)=>res.json({message:'This is home route'}))
 
 //user Router
-app.use('/api/user',userRouter)
+app.use('/api/user', userRouter)
 
 // product Router
-app.use('/api/product',productRouter)
+app.use('/api/product', productRouter)
 
 // cart Router
-app.use('/api/cart',cartRouter)
+app.use('/api/cart', cartRouter)
 
 // address router
-app.use('/api/address',addressRouter)
+app.use('/api/address', addressRouter)
 
 app.use(express.static(path.join(__dirname, "/Project_Xmart/dist")))
 
@@ -40,9 +40,13 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "Project_Xmart", "dist", "index.html"));
 });
 
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("MongoDB Connected Successfully..."))
-    .catch((err) => console.log("MongoDB connection error: ", err));
 
-const port = 1000;
-app.listen(port,()=>console.log(`Server is running on port ${port}`))
+
+const port = process.env.PORT;
+app.listen(port, () => {
+    mongoose.connect(process.env.MONGODB_URI)
+        .then(() => console.log("MongoDB Connected Successfully..."))
+        .catch((err) => console.log("MongoDB connection error: ", err));
+    console.log(`Server is running on port ${port}`)
+}
+)
