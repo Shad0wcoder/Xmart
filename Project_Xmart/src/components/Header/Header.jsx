@@ -60,7 +60,7 @@ const Header = () => {
                 <button className='btns' onClick={() => {
                   logout();
                   navigate('/')
-                }}><Link to={'/signup'}>logout</Link></button>
+                }}><Link to={'/logout'}>logout</Link></button>
               </div>
               <div className="shopping_cart">
                 <Link to={"/cart"}>

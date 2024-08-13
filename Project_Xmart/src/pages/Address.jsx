@@ -44,6 +44,11 @@ const Address = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    if(phoneNumber.length !== 10){
+      alert("Phone Number must be exactly 10 digits")
+      return;
+    }
     const result = await shippingAddress(fullName, address, city, state, country, pincode, phoneNumber)
 
     alert(JSON.stringify(data, null, 2))

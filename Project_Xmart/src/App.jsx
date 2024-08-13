@@ -17,6 +17,7 @@ function App() {
     <main className='main1'>
       <Outlet />
     </main>
+    <Footer />
     </>
   )
 }

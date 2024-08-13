@@ -6,7 +6,7 @@ import { useState } from 'react';
 import AppContext from '../context/AppContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast, Slide } from 'react-toastify';
 
 const SignUp = () => {
   const {register} = useContext(AppContext)
@@ -19,7 +19,7 @@ const SignUp = () => {
         name : "",
         confirm_password: "",
     })
-
+    const [error, setError] = useState("");
     const handleOnchange = (e) => {
         const { name, value } = e.target
 
@@ -31,30 +31,68 @@ const SignUp = () => {
         })
     }
 
+    const validatePassword = (password) => {
+      // Check if password is at least 6 characters long and contains letters or digits
+      const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+      return regex.test(password);
+    };
 
-    const {name,email,password} = data
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const result = await register(name,email,password)
-        if(result.success){
-          navigate('/login')
-        }
-        console.log(data);
-    }
+      e.preventDefault();
+      const { name, email, password, confirm_password } = data;
+  
+      if (!validatePassword(password)) {
+        toast.error("Password must be at least 6 characters", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+      });
+        return;
+      }
+  
+      if (password !== confirm_password) {
+        toast.error("Passwords do not match.", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Slide,
+      });
+        return;
+      }
+  
+      setError(""); // Clear previous errors
+      const result = await register(name, email, password);
+      if (result.success) {
+        navigate('/login');
+      }
+      console.log(data);
+    };
 
     console.log("data login",data);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
       };
-      // const togglePasswordVisibility1 = () => {
-      //   setShowConfirmPassword(!showConfirmPassword);
-      // };
+      const togglePasswordVisibility1 = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+      };
   return (
     <div className="signup-container">
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
+      {error && <p className="error-message">{error}</p>}
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
@@ -94,7 +132,7 @@ const SignUp = () => {
           {showPassword ? <FaEye /> : <FaEyeSlash />}
         </span>
       </div>
-      {/* <div className="form-group password-group">
+      <div className="form-group password-group">
         <label htmlFor="password">Confirm Password</label>
         <input
           type={showConfirmPassword ? 'text' : 'password'}
@@ -108,7 +146,7 @@ const SignUp = () => {
         <span className="password-toggle" onClick={togglePasswordVisibility1}>
           {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
         </span>
-      </div> */}
+      </div>
       <button type="submit" className="signup-button">Sign Up</button>
     <p className='bottom'>Already have account ? <Link to={"/login"} className='loginlink'>Login</Link> </p>
     </form>

@@ -12,6 +12,9 @@ import Cart from "../pages/Cart";
 import Address from "../pages/Address";
 import Checkout from "../pages/Checkout";
 import CategoryPage from "../components/product/CategoryPage";
+import AboutUs from "../pages/AboutUs";
+import ContactUs from "../pages/ContactUs";
+import FAQ from "../pages/FAQ";
 
 const router = createBrowserRouter([
     {
@@ -61,6 +64,18 @@ const router = createBrowserRouter([
             {
                 path : "/category/:category", 
                 element : <CategoryPage />
+            },
+            {
+                path: "/about",
+                element : <AboutUs />
+            },
+            {
+                path: "/contact",
+                element : <ContactUs />
+            },
+            {
+                path: "/faq",
+                element : <FAQ />
             }
         ]
     }

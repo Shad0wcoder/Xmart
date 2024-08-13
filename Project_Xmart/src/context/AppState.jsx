@@ -95,8 +95,8 @@ const AppState = (props) => {
         });
         // console.log("user login",api.data);
         setToken(api.data.token)
-        setIsAuthenticated(true)
         localStorage.setItem('token', api.data.token)
+        setIsAuthenticated(true)
         return api.data;
     };
 

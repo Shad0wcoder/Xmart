@@ -26,6 +26,9 @@ const SearchProduct = ({ category }) => {
 
   return (
 <div className="search_container">
+  <div className="search_res">
+  <p>Showing result products found for "{term}"</p> 
+  </div>
         {searchProducts.length > 0 ? (
           searchProducts.map((product) => (
             <div key={product._id} className="search_card" id="search_card">
