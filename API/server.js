@@ -40,8 +40,12 @@ app.get("*",(req,res) => {
     res.sendFile(path.join(__dirname,"Project_Xmart","dist","index.html"))
 })
 
-mongoose.connect(process.env.MONGODB_URI)
-.then(()=>console.log("MongoDB Connected Successfully...")).catch((err)=>console.log(err))
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log("MongoDB Connected Successfully..."))
+    .catch((err) => console.log("MongoDB connection error: ", err));
 
 const port = 1000;
 app.listen(port,()=>console.log(`Server is running on port ${port}`))
