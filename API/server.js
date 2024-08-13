@@ -1,47 +1,49 @@
-import path from 'path'
-import express from 'express'
+import path from 'path';
+import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'express'
-import userRouter from './Routes/user.js'
-import productRouter from './Routes/product.js'
-import cartRouter from './Routes/cart.js'
-import addressRouter from './Routes/address.js'
 import cors from 'cors';
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+import userRouter from './Routes/user.js';
+import productRouter from './Routes/product.js';
+import cartRouter from './Routes/cart.js';
+import addressRouter from './Routes/address.js';
+
+dotenv.config();
+
 const app = express();
 
-app.use(bodyParser.json())
+// Middleware
+app.use(express.json()); // Replaces bodyParser.json()
 
-const __dirname = path.resolve()
+const __dirname = path.resolve();
 app.use(cors({
-    origin:true,
-    methods:[ "GET", "POST", "PUT", "DELETE"],
-    credentials:true
-}))
-// home testing route
-// app.get('/',(req,res)=>res.json({message:'This is home route'}))
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 
-//user Router
-app.use('/api/user',userRouter)
+// Routers
+app.use('/api/user', userRouter);
+app.use('/api/product', productRouter);
+app.use('/api/cart', cartRouter);
+app.use('/api/address', addressRouter);
 
-// product Router
-app.use('/api/product',productRouter)
+// Static Files
+app.use(express.static(path.join(__dirname, "/Project_Xmart/dist")));
 
-// cart Router
-app.use('/api/cart',cartRouter)
+// Handle React routing, return all requests to React app
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "Project_Xmart", "dist", "index.html"));
+});
 
-// address router
-app.use('/api/address',addressRouter)
-
-app.use(express.static(path.join(__dirname, "/Project_Xmart/dist")))
-
-app.get("*",(req,res) => {
-    res.sendFile(path.join(__dirname,"Project_Xmart","dist","index.html"))
+// MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
+    .then(() => console.log("MongoDB Connected Successfully..."))
+    .catch((err) => console.log("MongoDB connection error: ", err));
 
-mongoose.connect(process.env.MONGODB_URI)
-.then(()=>console.log("MongoDB Connected Successfully...")).catch((err)=>console.log(err))
-
-const port = 1000;
-app.listen(port,()=>console.log(`Server is running on port ${port}`))
+// Start Server
+const port = process.env.PORT || 1000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
