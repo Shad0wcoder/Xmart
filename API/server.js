@@ -20,7 +20,7 @@ app.use(cors({
     credentials:true
 }))
 // home testing route
-app.get('/',(req,res)=>res.json({message:'This is home route'}))
+// app.get('/',(req,res)=>res.json({message:'This is home route'}))
 
 //user Router
 app.use('/api/user',userRouter)
