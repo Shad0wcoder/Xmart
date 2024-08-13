@@ -5,7 +5,7 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AppState = (props) => {
-    const url = "http://localhost:1000/api";
+    const url = "https://xmart-1uzw.onrender.com/api";
 
     const [products, setProducts] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') || '')
