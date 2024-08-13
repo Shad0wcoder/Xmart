@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import mongoose from 'mongoose';
 import bodyParser from 'express'
@@ -12,7 +13,7 @@ const app = express();
 
 app.use(bodyParser.json())
 
-
+const __dirname = path.resolve()
 app.use(cors({
     origin:true,
     methods:[ "GET", "POST", "PUT", "DELETE"],
@@ -32,6 +33,12 @@ app.use('/api/cart',cartRouter)
 
 // address router
 app.use('/api/address',addressRouter)
+
+app.use(express.static(path.join(__dirname, "/Project_Xmart/dist")))
+
+app.get("*",(req,res) => {
+    res.sendFile(path.join(__dirname,"Project_Xmart","dist","index.html"))
+})
 
 mongoose.connect(
     "mongodb+srv://sds21212121:01HwC982BAMYsNdb@cluster0.nrq9ely.mongodb.net/",{

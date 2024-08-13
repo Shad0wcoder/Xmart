@@ -4,7 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon API/server.js",
+    "start": "node API/server.js",
+    "build": "npm install && npm install --prefix Project_Xmart && npm run build --prefix Project_Xmart"
   },
   "author": "",
   "license": "ISC",
