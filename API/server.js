@@ -40,11 +40,8 @@ app.get("*",(req,res) => {
     res.sendFile(path.join(__dirname,"Project_Xmart","dist","index.html"))
 })
 
-mongoose.connect(
-    "mongodb+srv://sds21212121:01HwC982BAMYsNdb@cluster0.nrq9ely.mongodb.net/",{
-        dbName:"MERN_E_Commerce"
-    }
-).then(()=>console.log("MongoDB Connected Successfully...")).catch((err)=>console.log(err))
+mongoose.connect(process.env.MONGODB_URI)
+.then(()=>console.log("MongoDB Connected Successfully...")).catch((err)=>console.log(err))
 
 const port = 1000;
 app.listen(port,()=>console.log(`Server is running on port ${port}`))
