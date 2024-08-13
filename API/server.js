@@ -12,10 +12,10 @@ dotenv.config()
 const app = express();
 
 app.use(bodyParser.json())
-
+app.use(express.json());
 const __dirname = path.resolve()
 app.use(cors({
-    origin:true,
+    origin:"https://xmart-1uzw.onrender.com",
     methods:[ "GET", "POST", "PUT", "DELETE"],
     credentials:true
 }))
@@ -36,14 +36,11 @@ app.use('/api/address',addressRouter)
 
 app.use(express.static(path.join(__dirname, "/Project_Xmart/dist")))
 
-app.get("*",(req,res) => {
-    res.sendFile(path.join(__dirname,"Project_Xmart","dist","index.html"))
-})
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "Project_Xmart", "dist", "index.html"));
+});
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB Connected Successfully..."))
     .catch((err) => console.log("MongoDB connection error: ", err));
 
