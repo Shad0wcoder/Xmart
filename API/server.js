@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.use(express.json());
 const __dirname = path.resolve()
 app.use(cors({
-    origin: "https://xmart-1uzw.onrender.com",
+    origin: "http://localhost:1000/api",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
