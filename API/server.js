@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 app.use(express.json());
 const __dirname = path.resolve()
 app.use(cors({
-    origin: "http://localhost:1000/api",
+    origin: "https://xmart-1uzw.onrender.com/api",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
@@ -40,13 +40,14 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "Project_Xmart", "dist", "index.html"));
 });
 
+mongoose.connect(
+    "mongodb+srv://sds21212121:01HwC982BAMYsNdb@cluster0.nrq9ely.mongodb.net/",{
+      dbName:"MERN_E_Commerce"
+    }
+  ).then(()=>console.log("MongoDB Connected Succssfully...!")).catch((err)=>console.log(err));
 
-
-const port = process.env.PORT;
+const port = process.env.PORT || 1000;
 app.listen(port, () => {
-    mongoose.connect(process.env.MONGODB_URI)
-        .then(() => console.log("MongoDB Connected Successfully..."))
-        .catch((err) => console.log("MongoDB connection error: ", err));
     console.log(`Server is running on port ${port}`)
 }
 )
