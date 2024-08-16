@@ -71,6 +71,7 @@ body{
     min-height: 200px;
     max-height: 200px;
     object-fit: cover;
+    white-space: normal;
   }
   .card-content{
     padding: 10px 30px;
