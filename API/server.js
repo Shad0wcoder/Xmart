@@ -41,7 +41,7 @@ app.get("*", (req, res) => {
 });
 
 mongoose.connect(
-    "mongodb+srv://sds21212121:01HwC982BAMYsNdb@cluster0.nrq9ely.mongodb.net/",{
+    process.env.MONGODB_URI,{
       dbName:"MERN_E_Commerce"
     }
   ).then(()=>console.log("MongoDB Connected Succssfully...!")).catch((err)=>console.log(err));
