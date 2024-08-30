@@ -1,86 +1,88 @@
-import React, { useContext } from 'react'
-import { useState } from 'react';
-import "./Login.css"
+import React, { useContext, useState } from 'react';
+import "./Login.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const {login} = useContext(AppContext)
-  const navigate = useNavigate()
-    const [showPassword, setShowPassword] = useState(false);
-    const [data, setData] = useState({
-        email : "",
-        password : ""
-    })
+  const { login } = useContext(AppContext);
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-    const handleOnchange = (e) => {
-        const { name, value } = e.target
+  const handleOnchange = (e) => {
+    const { name, value } = e.target;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
 
-        setData((preve)=>{
-            return{
-                ...preve,
-                [name] : value
-            }
-        })
-    }
-    const {email,password} = data
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      const result = await login( email, password)
-      if(result.success){
-        navigate('/')
+  const { email, password } = data;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        navigate('/');
+      } else {
+        setError(result.message || "Login failed. Please try again.");
       }
-      console.log(data);
-  }
+    } catch (err) {
+      setError("An error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    console.log("data login",data);
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-      };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div className="login-container">
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="username"
-          placeholder='Enter the email'
-          name='email'
-          value={data.email}
-          onChange={handleOnchange}
-          required
-        />
-      </div>
-      <div className="form-group password-group">
-        <label htmlFor="password">Password</label>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          id="password"
-          placeholder='Enter the Password'
-          name='password'
-          value={data.password}
-          onChange={handleOnchange}
-          required
-        />
-        <span className="password-toggle" onClick={togglePasswordVisibility}>
-          {showPassword ? <FaEye /> : <FaEyeSlash />}
-        </span>
-      </div>
-      <Link to={'/forgot-password'} className='forgot'>
-        Forgot password ?
-      </Link>
-      <button type="submit" className="login-button">Login</button>
-    <p className='bottom'>Don't have account ? <Link to={"/signup"} className='signlink'>Sign up</Link> </p>
-    </form>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder='Enter your email'
+            name='email'
+            value={data.email}
+            onChange={handleOnchange}
+            required
+          />
+        </div>
+        <div className="form-group password-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            placeholder='Enter your password'
+            name='password'
+            value={data.password}
+            onChange={handleOnchange}
+            required
+          />
+          <span className="password-toggle" onClick={togglePasswordVisibility}>
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
+          </span>
+        </div>
+        <Link to='/forgot-password' className='forgot'>
+          Forgot password?
+        </Link>
+        <button type="submit" className="login-button" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+        <p className='bottom'>Don't have an account? <Link to="/signup" className='signlink'>Sign up</Link></p>
+      </form>
+    </div>
+  );
+};
 
-  </div>
-  )
-}
-
-export default Login
+export default Login;

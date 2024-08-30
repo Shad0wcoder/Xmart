@@ -12,6 +12,8 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   const url = "https://xmart-1uzw.onrender.com/api";
+  // const url = "http://localhost:1000/api";
+
 
   useEffect(() => {
     const fetchProduct = async () => {

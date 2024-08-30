@@ -5,7 +5,10 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AppState = (props) => {
-    const url = "https://xmart-1uzw.onrender.com/api";
+    
+    const url = "http://localhost:1000/api";
+
+    // const url = "https://xmart-1uzw.onrender.com/api";
 
     const [products, setProducts] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') || '')
@@ -73,32 +76,66 @@ const AppState = (props) => {
 
     //login user
     const login = async (email, password) => {
-        const api = await axios.post(`${url}/user/login`, {
-            email, password
-        }, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-            withCredentials: true,
-        });
-        // alert(api.data.message)
-        toast(api.data.message, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Slide,
-        });
-        // console.log("user login",api.data);
-        setToken(api.data.token)
-        localStorage.setItem('token', api.data.token)
-        setIsAuthenticated(true)
-        return api.data;
+        try {
+            const api = await axios.post(`${url}/user/login`, {
+                email, password
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true,
+            });
+            
+            if (api.data.success) {
+                toast(api.data.message, {
+                    position: "top-center",
+                    autoClose: 1500,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Slide,
+                });
+                setUser(api.data.user);
+                setToken(api.data.token);
+                localStorage.setItem('token', api.data.token);
+                setIsAuthenticated(true);
+            } else {
+                toast(api.data.message, {
+                    position: "top-center",
+                    autoClose: 1500,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Slide,
+                });
+                setIsAuthenticated(false);
+                localStorage.removeItem('token');
+            }
+            return api.data;
+        } catch (error) {
+            toast("An error occurred. Please try again.", {
+                position: "top-center",
+                autoClose: 1500,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Slide,
+            });
+            setIsAuthenticated(false);
+            localStorage.removeItem('token');
+        }
     };
+    
+    
 
 
     //logout user

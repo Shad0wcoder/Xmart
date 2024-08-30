@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../Logo/Logo'
 import './Header.css'
 import { FaSearch } from "react-icons/fa";
@@ -16,7 +16,6 @@ const Header = () => {
   const { user, setFilteredData, products, logout, isAuthenticated, cart } = useContext(AppContext)
 
   // console.log("user cart = ", cart);
-  
 
   const filterbyCategory = (cat) => {
     navigate(`/category/${cat}`)
@@ -29,6 +28,7 @@ const Header = () => {
     navigate(`/product/search/${encodedTerm}`);
     setSearchTerm("");
   };
+
   
   return (
     <header className='header'>
@@ -53,23 +53,24 @@ const Header = () => {
           {isAuthenticated && (
             <>
               <div className="sign_in">
-              <Link to={"/profile"}><div className="profile">
+                <Link to={"/profile"}><div className="profile">
                   <FaRegCircleUser />
                   <p>{user?.name || 'Guest'}</p>
                 </div></Link>
                 <button className='btns' onClick={() => {
                   logout();
-                  navigate('/')
-                }}><Link to={'/logout'}>logout</Link></button>
+                  navigate('/');
+                }}>Logout</button>
+
               </div>
               <div className="shopping_cart">
                 <Link to={"/cart"}>
-                <span><FaShoppingCart /></span>
+                  <span><FaShoppingCart /></span>
 
-                <div className='item'>
-                  <p className='num'>{cart?.items?.length}</p>
-                </div>
-              </Link>
+                  <div className='item'>
+                    <p className='num'>{cart?.items?.length}</p>
+                  </div>
+                </Link>
               </div>
             </>
           )}
@@ -78,7 +79,7 @@ const Header = () => {
             <>
 
               <div className="sign_in">
-              <Link to={"/profile"}><div className="profile">
+                <Link to={"/profile"}><div className="profile">
                   <FaRegCircleUser />
                   <p>{user?.name || 'Guest'}</p>
                 </div></Link>
@@ -87,13 +88,13 @@ const Header = () => {
                 </div>
               </div>
               <div className="shopping_cart">
-              <Link to={"/cart"}>
-                <span><FaShoppingCart /></span>
+                <Link to={"/cart"}>
+                  <span><FaShoppingCart /></span>
 
-                <div className='item'>
-                  <p className='num'>{cart?.items?.length}</p>
-                </div>
-              </Link>
+                  <div className='item'>
+                    <p className='num'>{cart?.items?.length}</p>
+                  </div>
+                </Link>
               </div>
             </>
           )}
