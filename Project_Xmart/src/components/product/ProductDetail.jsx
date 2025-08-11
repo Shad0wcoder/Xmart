@@ -11,12 +11,12 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   // const url = "https://xmart-1uzw.onrender.com/api";
-  const url = "https://xmart-ten.vercel.app/api";
+  const API_BASE_URL = "https://xmart-1.onrender.com/api";
 
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const api = await axios.get(`${url}/product/${id}`, {
+      const api = await axios.get(`${API_BASE_URL}/product/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

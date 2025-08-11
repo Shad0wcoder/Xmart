@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const AppState = (props) => {
 
     // const url = "http://localhost:5000/api";
-    const url = "https://xmart-ten.vercel.app/api";
+    const API_BASE_URL = "https://xmart-1.onrender.com/api";
 
 
     const [products, setProducts] = useState([])
@@ -38,7 +38,7 @@ const AppState = (props) => {
 
     useEffect(() => {
         const fetchProduct = async () => {
-            const api = await axios.get(`${url}/product/all`, {
+            const api = await axios.get(`${API_BASE_URL}/product/all`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -69,7 +69,7 @@ const AppState = (props) => {
 
     //register user
     const register = async (name, email, password, role) => {
-        const api = await axios.post(`${url}/user/register`, {
+        const api = await axios.post(`${API_BASE_URL}/user/register`, {
             name, email, password, role
         }, {
             headers: {
@@ -96,7 +96,7 @@ const AppState = (props) => {
     //login user
     const login = async (email, password) => {
         try {
-            const api = await axios.post(`${url}/user/login`, {
+            const api = await axios.post(`${API_BASE_URL}/user/login`, {
                 email, password
             }, {
                 headers: {
@@ -179,7 +179,7 @@ const AppState = (props) => {
 
     // user profile
     const userProfile = async () => {
-        const api = await axios.get(`${url}/user/profile`, {
+        const api = await axios.get(`${API_BASE_URL}/user/profile`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -193,7 +193,7 @@ const AppState = (props) => {
 
     // Add to cart
     const addToCart = async (productId, title, price, qty, imgSrc) => {
-        const api = await axios.post(`${url}/cart/add`,
+        const api = await axios.post(`${API_BASE_URL}/cart/add`,
             { productId, title, price, qty, imgSrc }, {
             headers: {
                 "Content-Type": "Application/json",
@@ -219,7 +219,7 @@ const AppState = (props) => {
 
     // User Cart
     const userCart = async () => {
-        const api = await axios.get(`${url}/cart/user`, {
+        const api = await axios.get(`${API_BASE_URL}/cart/user`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -233,7 +233,7 @@ const AppState = (props) => {
 
     // dec qty
     const decreaseQty = async (productId, qty) => {
-        const api = await axios.post(`${url}/cart/--qty`, { productId, qty }, {
+        const api = await axios.post(`${API_BASE_URL}/cart/--qty`, { productId, qty }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -259,7 +259,7 @@ const AppState = (props) => {
 
     // remove Item from Cart
     const removeFromCart = async (productId, qty) => {
-        const api = await axios.delete(`${url}/cart/remove/${productId}`, {
+        const api = await axios.delete(`${API_BASE_URL}/cart/remove/${productId}`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -285,7 +285,7 @@ const AppState = (props) => {
 
     // clear cart
     const clearCart = async () => {
-        const api = await axios.delete(`${url}/cart/clear`, {
+        const api = await axios.delete(`${API_BASE_URL}/cart/clear`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -312,7 +312,7 @@ const AppState = (props) => {
 
     // Add Shipping Address
     const shippingAddress = async (fullName, address, city, state, country, pincode, phoneNumber) => {
-        const api = await axios.post(`${url}/address/add`, { fullName, address, city, state, country, pincode, phoneNumber }, {
+        const api = await axios.post(`${API_BASE_URL}/address/add`, { fullName, address, city, state, country, pincode, phoneNumber }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -339,7 +339,7 @@ const AppState = (props) => {
 
     // Get user latest address
     const getAddress = async () => {
-        const api = await axios.get(`${url}/address/get`, {
+        const api = await axios.get(`${API_BASE_URL}/address/get`, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": token
@@ -352,7 +352,7 @@ const AppState = (props) => {
     // Admin Dashboard Data
     const adminDashboard = async () => {
         try {
-            const api = await axios.get(`${url}/admin/dashboard`, {
+            const api = await axios.get(`${API_BASE_URL}/admin/dashboard`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": token
@@ -380,7 +380,7 @@ const AppState = (props) => {
     // Create Product
     const addProduct = async (newProduct) => {
         try {
-            const { data } = await axios.post(`${url}/product/add`, newProduct, {
+            const { data } = await axios.post(`${API_BASE_URL}/product/add`, newProduct, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": token
@@ -407,7 +407,7 @@ const AppState = (props) => {
     // Update Product
     const updateProductsById = async (productId, updatedFields) => {
         try {
-            const { data } = await axios.put(`${url}/product/${id}`, updatedFields, {
+            const { data } = await axios.put(`${API_BASE_URL}/product/${id}`, updatedFields, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": token
@@ -434,7 +434,7 @@ const AppState = (props) => {
     // Delete Product
     const deleteProductsById = async (productId) => {
         try {
-            const { data } = await axios.delete(`${url}/product/${id}`, {
+            const { data } = await axios.delete(`${API_BASE_URL}/product/${id}`, {
                 headers: {
                     "Authorization": token
                 },
@@ -461,7 +461,7 @@ const AppState = (props) => {
 
     // update role
     // const updateRole = async (newRole) => {
-    //         const api = await axios.patch(`${url}/user/role`, { role: newRole }, {
+    //         const api = await axios.patch(`${API_BASE_URL}/user/role`, { role: newRole }, {
     //             headers: { "Content-Type": "application/json", "Authorization": token },
     //             withCredentials: true,
     //         });
