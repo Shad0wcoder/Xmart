@@ -8,7 +8,7 @@ import addressRouter from './Routes/address.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import paymentRoutes from './Routes/paymentRoutes.js';
-import adminRoutes from './routes/admin.js';
+import adminRoutes from './Routes/admin.js';
 
 dotenv.config();
 
