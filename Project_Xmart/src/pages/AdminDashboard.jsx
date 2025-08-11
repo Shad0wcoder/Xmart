@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext';
 import { toast, Bounce } from 'react-toastify';
 
 const AdminDashboard = () => {
-  const url = "http://localhost:5000";
+  const url = "https://xmart-ten.vercel.app/";
   const { products, setProducts } = useContext(AppContext);
 
   const [form, setForm] = useState({

@@ -6,7 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const AppState = (props) => {
 
-    const url = "http://localhost:5000/api";
+    // const url = "http://localhost:5000/api";
+    const url = "https://xmart-ten.vercel.app/api";
+
 
     const [products, setProducts] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') || '')

@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   // const url = "https://xmart-1uzw.onrender.com/api";
-  const url = "http://localhost:5000/api";
+  const url = "https://xmart-ten.vercel.app/api";
 
 
   useEffect(() => {
