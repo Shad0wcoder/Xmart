@@ -9,6 +9,7 @@ const Checkout = () => {
   const [qty, setQty] = useState(0);
   const [price, setPrice] = useState(0);
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
     const shippingFee = 49;
   const totalAmount = price + shippingFee;
@@ -49,7 +50,7 @@ const handlePayment = async (e) => {
 
   try {
     // Make API request to your backend to create Razorpay order
-    const { data: order } = await axios.post('http://localhost:5000/api/payment/create-order', {
+    const { data: order } = await axios.post(`${API_BASE_URL}/payment/create-order`, {
       amount: totalAmount * 100 // convert to paisa
     });
 

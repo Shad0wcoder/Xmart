@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(`${API_BASE_URL}/api/product`);
+      const { data } = await axios.get(`${API_BASE_URL}/product`);
       setProducts(data.products || []);
     } catch (error) {
       console.error('Fetch error:', error);
@@ -52,7 +52,7 @@ const AdminDashboard = () => {
     const newProduct = { ...form, price: Number(form.price), qty: Number(form.qty) };
 
     try {
-      const { data } = await axios.post(`${API_BASE_URL}/api/product/add`, newProduct, {
+      const { data } = await axios.post(`${API_BASE_URL}/product/add`, newProduct, {
         headers: { Authorization: token }
       });
 
@@ -88,7 +88,7 @@ const AdminDashboard = () => {
     const updatedProduct = { ...form, price: Number(form.price), qty: Number(form.qty) };
 
     try {
-      const { data } = await axios.put(`${API_BASE_URL}/api/product/${id}`, updatedProduct, {
+      const { data } = await axios.put(`${API_BASE_URL}/product/${id}`, updatedProduct, {
         headers: { Authorization: token }
       });
 
@@ -113,7 +113,7 @@ const AdminDashboard = () => {
     if (!window.confirm('Are you sure you want to delete this product?')) return;
 
     try {
-      await axios.delete(`${API_BASE_URL}/api/product/${id}`, {
+      await axios.delete(`${API_BASE_URL}/product/${id}`, {
         headers: { Authorization: token }
       });
 
