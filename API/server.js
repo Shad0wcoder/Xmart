@@ -35,7 +35,11 @@ const __dirname = path.resolve();
 //   allowedHeaders: ["Content-Type", "Authorization"]
 // }));
 
-const allowedOrigins = ["http://localhost:5173", "https://xmart-1uzw.onrender.com", "https://xmart-ten.vercel.app/"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://xmart-1uzw.onrender.com",
+  "https://xmart-ten.vercel.app"
+];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -49,6 +53,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
