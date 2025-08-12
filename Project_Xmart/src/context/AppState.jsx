@@ -471,7 +471,7 @@ const AppState = (props) => {
     // };
     return (
         <AppContext.Provider value={{
-            products, register, login, url, token, setIsAuthenticated, isAuthenticated, setFilteredData, filteredData, logout, user, loading, addToCart, cart, decreaseQty, removeFromCart, clearCart, shippingAddress, userAddress, getAddress, setUser, adminDashboard, addProduct, updateProductsById, deleteProductsById, setProducts
+            products, register, login, API_BASE_URL, token, setIsAuthenticated, isAuthenticated, setFilteredData, filteredData, logout, user, loading, addToCart, cart, decreaseQty, removeFromCart, clearCart, shippingAddress, userAddress, getAddress, setUser, adminDashboard, addProduct, updateProductsById, deleteProductsById, setProducts
         }}>{props.children}</AppContext.Provider>
     );
 }
