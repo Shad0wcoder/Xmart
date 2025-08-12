@@ -6,7 +6,7 @@ import AppContext from '../context/AppContext';
 import { toast, Bounce } from 'react-toastify';
 
 const AdminDashboard = () => {
-  const API_BASE_URL = "https://xmart-1.onrender.com";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
   const { products, setProducts } = useContext(AppContext);
 
   const [form, setForm] = useState({

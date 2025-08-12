@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate()
   // const url = "https://xmart-1uzw.onrender.com/api";
-  const API_BASE_URL = "https://xmart-1.onrender.com/api";
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
   useEffect(() => {

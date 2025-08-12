@@ -63,12 +63,12 @@ app.use('/api/admin', adminRoutes);
 
 // Serve frontend
 // Serve static files from the 'dist' folder
-app.use(express.static(path.join(__dirname, "../Project_Xmart/dist")));
+// app.use(express.static(path.join(__dirname, "../Project_Xmart/dist")));
 
-// For any other route, send back index.html (Single Page App routing)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Project_Xmart/dist", "index.html"));
-});
+// // For any other route, send back index.html (Single Page App routing)
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../Project_Xmart/dist", "index.html"));
+// });
 
 // Connect to MongoDB and then start the server
 mongoose.connect(process.env.MONGODB_URI, {
